@@ -113,9 +113,9 @@
                         </ul>
                     </nav>
                 </div>
-                 <div class="pb-5" style="position: absolute;width: 100%;bottom: 0px;">
-                      <p style="font-size: 14px; text-align: center;">Copyright © 2018 Ricardo Silva.</p>
-                 <p style="font-size: 14px; text-align: center;">All rights reserved.</p>
+                <div class="pb-5" style="position: absolute;width: 100%;bottom: 0px;">
+                    <p style="font-size: 14px; text-align: center;">Copyright © 2018 Ricardo Silva.</p>
+                    <p style="font-size: 14px; text-align: center;">All rights reserved.</p>
                 </div>
             </aside>
             <!-- END MENU SIDEBAR-->
@@ -127,14 +127,14 @@
                     <div class="section__content section__content--p30">
                         <div class="container-fluid">
                             <div class="header-wrap">
-                                
+
                                 <form class="form-header" action="pesquisar.jsp" method="POST">
                                     <input class="au-input au-input--xl" type="text" name="matricula" placeholder="Pesquisar por matricula" />
                                     <button class="au-btn--submit" type="submit">
                                         <i class="zmdi zmdi-search"></i>
                                     </button>
                                 </form>
-                                
+
                             </div>
                         </div>
                     </div>
@@ -147,12 +147,14 @@
                         <div class="container-fluid">
 
                             <%
-                                
+
                                 if (request.getMethod() == "GET") {
                                     response.sendRedirect("index.jsp");
                                 }
                                 request.setCharacterEncoding("UTF-8");
                                 String id = request.getParameter("id");
+                                String oldmatricula = request.getParameter("oldmatricula");
+                                String oldsituacao = request.getParameter("oldsituacao");
                                 String matricula = "";
                                 String situacao = "";
 
@@ -162,22 +164,43 @@
                                     matricula = request.getParameter("matricula");
                                     situacao = request.getParameter("situacao");
 
-                                    boolean resultado = Database.editar(id, matricula, situacao);
+                                    boolean resultado = Database.editar(id, matricula, situacao, oldmatricula, oldsituacao);
 
                                     if (!resultado) {%>
 
-                            <div class="alert alert-danger" role="alert">
-                                Erro ao atualizar o veiculo!
+                            <%if (matricula.equals(oldmatricula) && situacao.equals(oldsituacao)) {%>
+                            <div class="alert alert-warning" role="alert">
+                                O veiculo não sofreu alterações!
                             </div>  
+
                             <%} else {%>
+                            <div class="alert alert-danger" role="alert">
+                                Já existe um veiculo com essa matricula!
+                            </div>  
 
-                            <div class="alert alert-success" role="alert">
-                                Veiculo atualizado com sucesso!
-                            </div> 
+                            <%}%>
 
-                            <%}
+                            <%} else {%>
+                                <%if (!matricula.equals(oldmatricula) && situacao.equals(oldsituacao)) {%>
+                                <div class="alert alert-success" role="alert">
+                                    Matricula alterada com sucesso!
+                                </div>  
 
-                                } else if (request.getMethod() == "POST") {
+                                <%} else if (matricula.equals(oldmatricula) && !situacao.equals(oldsituacao)) {%>
+                                <div class="alert alert-success" role="alert">
+                                    Situacão alterada com sucesso!
+                                </div>  
+
+                                <%} else if(!matricula.equals(oldmatricula) && !situacao.equals(oldsituacao)) {%>
+                                <div class="alert alert-success" role="alert">
+                                    Veiculo atualizado com sucesso!
+                                </div>
+
+
+                            <%}%>
+
+                                <%}
+                                    }else if (request.getMethod () == "POST") {
 
                                     Camiao camiao = Database.find(id);
                                     matricula = camiao.getMatricula();
@@ -208,15 +231,30 @@
                                                 <div class="form-group">
 
                                                     <label for="select" class="control-label mb-1">Situação</label>
-                                                    <%=situacao%>
+
                                                     <div>
                                                         <select name="situacao" id="select" class="form-control">
                                                             <option value="0" disabled="">Escolha uma opção</option>
 
-                                                            <option value="Estancionado" <%if (situacao.equals("Estancionado")) {%>selected=""<%}%>>Estancionado</option>
-                                                            <option value="Avariado" <%if (situacao.equals("Avariado")) {%>selected=""<%}%>>Avariado</option>
-                                                            <option value="Na Revisão" <%if (situacao.equals("Na Revisão")) {%>selected=""<%}%>>Na Revisão</option>
-                                                            <option value="Em Trânsito" <%if (situacao.equals("Em Trânsito")) {%>selected=""<%}%>>Em Trânsito</option>
+                                                                    <option value="Estancionado" <%if (situacao.equals (
+                                                                         
+                                                                
+
+                                                                "Estancionado")) {%>selected=""<%}%>>Estancionado</option>
+                                                                    <option value="Avariado" <%if (situacao.equals (
+                                                                         
+                                                                
+
+                                                                "Avariado")) {%>selected=""<%}%>>Avariado</option>
+                                                                    <option value="Na Revisão" <%if (situacao.equals (
+                                                                         
+                                                                
+
+                                                                "Na Revisão")) {%>selected=""<%}%>>Na Revisão</option>
+                                                                    <option value="Em Trânsito" <%if (situacao.equals (
+                                                                         
+                                                                
+                                                                "Em Trânsito")) {%>selected=""<%}%>>Em Trânsito</option>
 
                                                         </select>
                                                     </div>
@@ -229,6 +267,8 @@
                                                         <span id="payment-button-sending" style="display:none;">Sending…</span>
                                                     </button>
                                                     <input type="hidden" name="editar" value="editar">
+                                                    <input type="hidden" name="oldmatricula" value="<%=matricula%>">
+                                                    <input type="hidden" name="oldsituacao" value="<%=situacao%>">
                                                 </div>
                                             </form>
                                         </div>

@@ -150,10 +150,11 @@
                                 request.setCharacterEncoding("UTF-8");
                                 String matricula = request.getParameter("matricula");
                                 String situacao = request.getParameter("situacao");
+                                boolean resultado = true;
 
-                                if (request.getParameter("adicionar") != null) {
+                                if (request.getMethod() == "POST" && request.getParameter("adicionar") != null) {
 
-                                    boolean resultado = Database.inserir(matricula, situacao);
+                                    resultado = Database.inserir(matricula, situacao);
 
                                     if (resultado) {
                             %>
@@ -164,7 +165,7 @@
 
                             <%} else {%>
                             <div class="alert alert-danger" role="alert">
-                                Erro ao adicionar o veiculo!
+                                Já existe um veiculo com essa matricula
                             </div>
 
                             <%}
@@ -214,7 +215,7 @@
                                     </div>
                                 </div>
 
-                                <%if (request.getMethod() == "POST") {%>
+                                <%if (request.getMethod() == "POST" && resultado) {%>
                                 <div class="col">
                                     <div class="card">
                                         <div class="card-header">

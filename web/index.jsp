@@ -153,6 +153,7 @@
                             <%
                                 request.setCharacterEncoding("UTF-8");
                                 String situacao = request.getParameter("situacao");
+                                String ordem = request.getParameter("ordem");
 
                                 if (request.getMethod() == "POST" && request.getParameter("id_delete") != null) {
 
@@ -179,6 +180,7 @@
                                 if (!(request.getMethod() == "POST" && request.getParameter("situacao") != null)) {
 
                                     situacao = "all";
+                                    ordem = "DESC";
 
                                 }
                             %>
@@ -200,6 +202,16 @@
                                                         <option value="Avariado" <%if (situacao.equals("Avariado")) {%>selected=""<%}%>>Avariado</option>
                                                         <option value="Na Revisão" <%if (situacao.equals("Na Revisão")) {%>selected=""<%}%>>Na Revisão</option>
                                                         <option value="Em Trânsito" <%if (situacao.equals("Em Trânsito")) {%>selected=""<%}%>>Em Trânsito</option>
+                                                    </select>
+
+                                                    <div class="dropDownSelect2"></div>
+                                                </div>
+                                                    
+                                                    <div class="rs-select2--light rs-select2--md">
+
+                                                    <select class="js-select2" name="ordem">
+                                                        <option value="DESC" <%if (ordem.equals("DESC")) {%>selected=""<%}%>>Descendente</option>
+                                                        <option value="ASC" <%if (ordem.equals("ASC")) {%>selected=""<%}%>>Ascendente</option>
                                                     </select>
 
                                                     <div class="dropDownSelect2"></div>
@@ -235,7 +247,7 @@
                                             <tbody>
 
                                                 <%try {
-                                                        List<Camiao> camioes = Database.listar(situacao);
+                                                        List<Camiao> camioes = Database.listar(situacao, ordem);
 
                                                         for (Camiao camiao : camioes) {
                                                 %>
@@ -263,7 +275,7 @@
 
                                                                 <input name="id_delete" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<%=camiao.getId()%>">
                                                                 <input name="situacao" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<%=situacao%>">
-
+                                                                <input name="ordem" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<%=ordem%>">
                                                                 <button type="submit" class="item mx-1" data-toggle="tooltip" data-placement="top" title="Remover">
                                                                     <i class="zmdi zmdi-delete "></i>
                                                                 </button>
