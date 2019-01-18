@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.23)
 # Database: java
-# Generation Time: 2019-01-17 13:57:51 +0000
+# Generation Time: 2019-01-18 03:00:13 +0000
 # ************************************************************
 
 
@@ -44,7 +44,11 @@ VALUES
 	(70,'30-40-12','Na Revisão'),
 	(71,'49-13-DX','Em Trânsito'),
 	(73,'09-57-SX','Estancionado'),
-	(74,'24-65-ZA','Estancionado');
+	(74,'24-65-ZA','Estancionado'),
+	(78,'24-65-ZA','Avariado'),
+	(79,'24-65-ZA','Avariado'),
+	(80,'24-65-ZA','Na Revisão'),
+	(81,'24-65-ZA','Na Revisão');
 
 /*!40000 ALTER TABLE `frota` ENABLE KEYS */;
 UNLOCK TABLES;
