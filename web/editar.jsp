@@ -1,3 +1,9 @@
+<% 
+    if (session.getAttribute("username") == null || !session.getAttribute("username").equals("admin")){
+        response.sendRedirect("login.jsp");
+    }
+        
+%>
 <%-- 
     Document   : index
     Created on : 13-Jan-2019, 00:08:48
@@ -135,6 +141,12 @@
                                     </button>
                                 </form>
 
+                                
+                                <div class="account-dropdown__footer">
+                                       <form method="post" action="login.jsp" class="form-header" style="">
+                                           <button type="submit" name="username" value=""><span class="logout">Logout<i class="zmdi zmdi-power ml-2"></i></span></button>
+                                       </form>  
+                                   </div> 
                             </div>
                         </div>
                     </div>
@@ -148,9 +160,6 @@
 
                             <%
 
-                                if (request.getMethod() == "GET") {
-                                    response.sendRedirect("index.jsp");
-                                }
                                 request.setCharacterEncoding("UTF-8");
                                 String id = request.getParameter("id");
                                 String oldmatricula = request.getParameter("oldmatricula");
@@ -217,7 +226,7 @@
                                         </div>
                                         <div class="card-body">
 
-                                            <form action="editar.jsp" method="post" novalidate="novalidate">
+                                            <form action="editar.jsp" method="post">
 
                                                 <div class="form-group">
                                                     <input name="id" type="hidden" class="form-control" aria-required="true" aria-invalid="false" value="<%=id%>">
@@ -225,7 +234,7 @@
 
                                                 <div class="form-group">
                                                     <label for="matricula" class="control-label mb-1">Matricula</label>
-                                                    <input id="matricula" name="matricula" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<%=matricula%>">
+                                                    <input id="matricula" name="matricula" type="text" class="form-control" aria-required="true" aria-invalid="false" value="<%=matricula%>" required="">
                                                 </div>
 
                                                 <div class="form-group">
@@ -233,8 +242,7 @@
                                                     <label for="select" class="control-label mb-1">Situação</label>
 
                                                     <div>
-                                                        <select name="situacao" id="select" class="form-control">
-                                                            <option value="0" disabled="">Escolha uma opção</option>
+                                                        <select name="situacao" id="select" class="form-control" required="">
 
                                                                     <option value="Estancionado" <%if (situacao.equals (
                                                                          

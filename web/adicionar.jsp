@@ -1,3 +1,7 @@
+<% 
+    if (session.getAttribute("username") == null || !session.getAttribute("username").equals("admin")){
+        response.sendRedirect("login.jsp");
+}%>
 <%-- 
     Document   : index
     Created on : 13-Jan-2019, 00:08:48
@@ -135,6 +139,12 @@
                                     </button>
                                 </form>
 
+                                <div class="account-dropdown__footer">
+                                       <form method="post" action="login.jsp" class="form-header" style="">
+                                           <button type="submit" name="username" value=""><span class="logout">Logout<i class="zmdi zmdi-power ml-2"></i></span></button>
+                                       </form>  
+                                </div> 
+                               
                             </div>
                         </div>
                     </div>
@@ -180,11 +190,11 @@
                                         </div>
                                         <div class="card-body">
 
-                                            <form action="" method="post" novalidate="novalidate">
+                                            <form action="" method="post">
 
                                                 <div class="form-group">
                                                     <label for="matricula" class="control-label mb-1">Matricula</label>
-                                                    <input id="cc-pament" name="matricula" type="text" class="form-control" aria-required="true" aria-invalid="false" value="">
+                                                    <input id="cc-pament" name="matricula" type="text" class="form-control" aria-required="true" aria-invalid="false" value="" required>
                                                 </div>
 
                                                 <div class="form-group">
@@ -192,9 +202,8 @@
                                                     <label for="select" class="control-label mb-1">Situação</label>
 
                                                     <div>
-                                                        <select name="situacao" id="select" class="form-control">
-                                                            <option value="0" disabled="" selected="">Escolha uma opção</option>
-                                                            <option value="Estancionado">Estancionado</option>
+                                                        <select name="situacao" id="select" class="form-control" required="">
+                                                            <option value="Estancionado" selected="">Estancionado</option>
                                                             <option value="Avariado">Avariado</option>
                                                             <option value="Na Revisão">Na Revisão</option>
                                                             <option value="Em Trânsito">Em Trânsito</option>

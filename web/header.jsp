@@ -1,3 +1,9 @@
+<% 
+    if (session.getAttribute("username") == null || !session.getAttribute("username").equals("admin")){
+
+    response.sendRedirect("login.jsp");
+
+}%>
 <%-- 
     Document   : index
     Created on : 13-Jan-2019, 00:08:48

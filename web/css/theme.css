@@ -40,6 +40,14 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 /*                   GENERIC                           */
 /*-----------------------------------------------------*/
 /* ----- Normalize ----- */
+
+.logout{
+    color: #555;
+}
+.logout:hover{
+    color: #4272d7;
+}
+
 * {
     margin: 0;
     padding: 0;

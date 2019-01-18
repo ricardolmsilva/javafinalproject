@@ -1,3 +1,7 @@
+<% 
+    if (session.getAttribute("username") == null || !session.getAttribute("username").equals("admin")){
+        response.sendRedirect("login.jsp");
+}%>
 <%-- 
     Document   : index
     Created on : 13-Jan-2019, 00:08:48
@@ -134,7 +138,13 @@
                                     <button class="au-btn--submit" type="submit">
                                         <i class="zmdi zmdi-search"></i>
                                     </button>
-                                </form> 
+                                </form>
+                                
+                                <div class="account-dropdown__footer">
+                                       <form method="post" action="login.jsp" class="form-header" style="">
+                                           <button type="submit" name="username" value=""><span class="logout">Logout<i class="zmdi zmdi-power ml-2"></i></span></button>
+                                       </form>  
+                                   </div> 
 
 
 

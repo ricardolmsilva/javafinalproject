@@ -1,4 +1,9 @@
+<% 
+    if (session.getAttribute("username") == null || !session.getAttribute("username").equals("admin")){
 
+    response.sendRedirect("login.jsp");
+
+}%>
                
      
 
