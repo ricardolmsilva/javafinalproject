@@ -44,9 +44,25 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 .logout{
     color: #555;
 }
+
 .logout:hover{
     color: #4272d7;
 }
+
+.logout-mobile{
+    display:none;
+}
+
+@media (max-width: 991px) {
+    .logout{
+        display:none;
+    }
+    .logout-mobile{
+        display:block;
+    }
+}
+
+
 
 * {
     margin: 0;
@@ -282,7 +298,7 @@ section {
 
 /*Page Objects*/
 .page-wrapper {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .page-container {
@@ -989,7 +1005,7 @@ section {
 
 @media (max-width: 767px) {
     .rs-select2--light {
-        display: block;
+        display: inline-block;
         margin-right: 0;
         margin-bottom: 10px;
     }

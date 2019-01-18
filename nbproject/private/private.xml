@@ -5,6 +5,8 @@
         <group>
             <file>file:/Users/ricardosilva/Documents/WebServer/javafinalproject/web/index.jsp</file>
             <file>file:/Users/ricardosilva/Documents/WebServer/javafinalproject/src/java/database/Database.java</file>
+            <file>file:/Users/ricardosilva/Documents/WebServer/javafinalproject/web/login.jsp</file>
+            <file>file:/Users/ricardosilva/Documents/WebServer/javafinalproject/web/pesquisar.jsp</file>
             <file>file:/Users/ricardosilva/Documents/WebServer/javafinalproject/web/editar.jsp</file>
             <file>file:/Users/ricardosilva/Documents/WebServer/javafinalproject/web/adicionar.jsp</file>
         </group>

@@ -80,8 +80,13 @@
                                 <a href="adicionar.jsp">
                                     <i class="far fa-check-square"></i>Adicionar</a>
                             </li>
-
-
+                            <li>
+                                <a>
+                                <form method="post" action="login.jsp">
+                                    <button type="submit" name="username" value="" class="logout logout-mobile"><i class="zmdi zmdi-power" style="margin-right: 19px;"></i>Logout</button>
+                                </form>
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </nav>
@@ -141,10 +146,8 @@
                                     </button>
                                 </form>
                            
-                                
-                         
                                    <div class="account-dropdown__footer">
-                                       <form method="post" action="login.jsp" class="form-header" style="">
+                                       <form method="post" action="login.jsp" class="form-header">
                                            <button type="submit" name="username" value=""><span class="logout">Logout<i class="zmdi zmdi-power ml-2"></i></span></button>
                                        </form>  
                                    </div> 
